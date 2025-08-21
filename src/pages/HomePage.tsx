@@ -1,13 +1,13 @@
 
 import React from 'react';
-import * as ReactRouterDOM from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTelegram } from '../hooks/useTelegram';
 import { useServices } from '../context/ServiceContext';
 import ServiceCard from '../components/ServiceCard';
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
 
 const HomePage: React.FC = () => {
-    const navigate = ReactRouterDOM.useNavigate();
+    const navigate = useNavigate();
     const { user } = useTelegram();
     const { services, isLoading } = useServices();
 

@@ -1,14 +1,14 @@
 
 import React, { useEffect } from 'react';
-import * as ReactRouterDOM from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowUpTrayIcon } from '@heroicons/react/24/outline';
 import { useServices } from '../context/ServiceContext';
 import { useOrder } from '../context/OrderContext';
 import { useTelegram } from '../hooks/useTelegram';
 
 const OrderPage: React.FC = () => {
-    const { serviceId } = ReactRouterDOM.useParams<{ serviceId: string }>();
-    const navigate = ReactRouterDOM.useNavigate();
+    const { serviceId } = useParams<{ serviceId: string }>();
+    const navigate = useNavigate();
     const { tg } = useTelegram();
     const { orderDetails, setOrderDetails, resetOrder } = useOrder();
     const { services } = useServices();

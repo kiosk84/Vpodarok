@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import * as ReactRouterDOM from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { 
     ChevronLeftIcon, UserCircleIcon, PhotoIcon, SparklesIcon as SparklesIconOutline, 
     TagIcon, CurrencyDollarIcon, ClockIcon, BriefcaseIcon 
@@ -13,7 +13,7 @@ import { GoogleGenAI } from "@google/genai";
 const ai = new GoogleGenAI({ apiKey: import.meta.env.GEMINI_API_KEY });
 
 const BecomePerformerPage: React.FC = () => {
-    const navigate = ReactRouterDOM.useNavigate();
+    const navigate = useNavigate();
     const { addService } = useServices();
     const { user, tg } = useTelegram();
     
@@ -22,7 +22,8 @@ const BecomePerformerPage: React.FC = () => {
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [isGenerating, setIsGenerating] = useState(false);
+    const [isGeneratingTitle, setIsGeneratingTitle] = useState(false);
+    const [isGeneratingDesc, setIsGeneratingDesc] = useState(false);
     const [generatedTitles, setGeneratedTitles] = useState<string[]>([]);
 
 
@@ -40,12 +41,12 @@ const BecomePerformerPage: React.FC = () => {
     const handleGenerateTitles = async () => {
         const keywords = prompt("Введите несколько ключевых слов о вашей услуге (например, 'портрет по фото акварелью'):");
         if (!keywords) return;
-        setIsGenerating(true);
+        setIsGeneratingTitle(true);
         setGeneratedTitles([]);
         try {
             const response = await ai.models.generateContent({
                 model: 'gemini-2.5-flash',
-                contents: `Создай 5 коротких, привлекательных и креативных названий для услуги фрилансера на маркетплейсе. Ключевые слова: "${keywords}". Названия должны быть на русском языке.`,
+                contents: `Создай 5 коротких, привлекательных и креативных названий для услуги фрилансера на маркетплейсе. Ключевые слова: "${keywords}". Названия должны быть на русском языке. Ответ дай в виде нумерованного списка.`,
             });
             const text = response.text;
             const titles = text.split('\n').map((t: string) => t.replace(/^\d+\.\s*/, '').trim()).filter(Boolean);
@@ -54,7 +55,7 @@ const BecomePerformerPage: React.FC = () => {
             console.error("Error generating titles:", error);
             tg.showAlert('Не удалось сгенерировать названия. Попробуйте еще раз.');
         } finally {
-            setIsGenerating(false);
+            setIsGeneratingTitle(false);
         }
     };
     
@@ -63,7 +64,7 @@ const BecomePerformerPage: React.FC = () => {
             tg.showAlert('Сначала введите или сгенерируйте название услуги.');
             return;
         }
-        setIsGenerating(true);
+        setIsGeneratingDesc(true);
         try {
             const response = await ai.models.generateContent({
                 model: 'gemini-2.5-flash',
@@ -74,7 +75,7 @@ const BecomePerformerPage: React.FC = () => {
             console.error("Error generating description:", error);
             tg.showAlert('Не удалось сгенерировать описание. Попробуйте еще раз.');
         } finally {
-            setIsGenerating(false);
+            setIsGeneratingDesc(false);
         }
     };
 
@@ -190,9 +191,9 @@ const BecomePerformerPage: React.FC = () => {
                             <div>
                                 <div className="flex items-center justify-between mb-1">
                                     <label htmlFor="service-title" className="block text-sm font-medium text-foreground">Название услуги</label>
-                                    <button type="button" onClick={handleGenerateTitles} disabled={isGenerating} className="flex items-center gap-1 text-xs text-link hover:text-primary disabled:text-hint transition-colors">
-                                        {isGenerating ? 'Генерация...' : 'Помощник AI'}
-                                        <SparklesIconOutline className="h-4 w-4" />
+                                    <button type="button" onClick={handleGenerateTitles} disabled={isGeneratingTitle} className="flex items-center gap-1 text-xs text-link hover:text-primary disabled:text-hint transition-colors">
+                                        {isGeneratingTitle ? 'Генерация...' : 'Помощник AI'}
+                                        <SparklesIconOutline className={`h-4 w-4 ${isGeneratingTitle ? 'animate-spin' : ''}`} />
                                     </button>
                                 </div>
                                 <input type="text" name="service-title" id="service-title" value={title} onChange={(e) => setTitle(e.target.value)} className="block w-full rounded-md border-0 bg-background py-2.5 px-3 text-foreground ring-1 ring-inset ring-zinc-700 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm" placeholder="Портреты на холсте" required />
@@ -210,9 +211,9 @@ const BecomePerformerPage: React.FC = () => {
                             <div>
                                 <div className="flex items-center justify-between mb-1">
                                     <label htmlFor="service-description" className="block text-sm font-medium text-foreground">Подробное описание</label>
-                                    <button type="button" onClick={handleGenerateDescription} disabled={!title || isGenerating} className="flex items-center gap-1 text-xs text-link hover:text-primary disabled:text-hint transition-colors">
-                                       {isGenerating ? 'Генерация...' : 'Помощник AI'}
-                                       <SparklesIconOutline className="h-4 w-4" />
+                                    <button type="button" onClick={handleGenerateDescription} disabled={!title || isGeneratingDesc} className="flex items-center gap-1 text-xs text-link hover:text-primary disabled:text-hint transition-colors">
+                                       {isGeneratingDesc ? 'Генерация...' : 'Помощник AI'}
+                                       <SparklesIconOutline className={`h-4 w-4 ${isGeneratingDesc ? 'animate-spin' : ''}`} />
                                     </button>
                                 </div>
                                 <textarea id="service-description" name="service-description" rows={6} value={description} onChange={(e) => setDescription(e.target.value)} className="block w-full rounded-md border-0 bg-background py-2 px-3 text-foreground ring-1 ring-inset ring-zinc-700 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm" placeholder="Закажите эксклюзивный портрет на холсте по фото..." required/>

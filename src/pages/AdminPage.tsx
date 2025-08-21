@@ -1,13 +1,13 @@
 
 import React, { useEffect } from 'react';
-import * as ReactRouterDOM from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useServices } from '../context/ServiceContext';
 import { useTelegram, ADMIN_USER_ID } from '../hooks/useTelegram';
 import type { Service } from '../types';
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/solid';
 
 const AdminPage: React.FC = () => {
-    const navigate = ReactRouterDOM.useNavigate();
+    const navigate = useNavigate();
     const { services, updateServiceStatus, isLoading } = useServices();
     const { user } = useTelegram();
 
