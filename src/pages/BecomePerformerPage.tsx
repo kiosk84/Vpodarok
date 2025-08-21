@@ -10,7 +10,7 @@ import { useTelegram } from '../hooks/useTelegram';
 import type { Service } from '../types';
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.GEMINI_API_KEY });
 
 const BecomePerformerPage: React.FC = () => {
     const navigate = ReactRouterDOM.useNavigate();
