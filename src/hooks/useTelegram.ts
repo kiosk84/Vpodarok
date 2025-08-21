@@ -14,14 +14,14 @@ declare global {
 const isDev = !window.Telegram?.WebApp?.initData;
 
 const mockUser = {
-    id: 999999999, // IMPORTANT: This ID is used as the Admin ID for testing
+    id: 192363865, // IMPORTANT: This ID is used as the Admin ID for testing
     first_name: 'Admin',
     last_name: 'Dev',
     username: 'admin_dev',
     language_code: 'en',
 };
 
-export const ADMIN_USER_ID = 999999999;
+export const ADMIN_USER_ID = 192363865;
 
 export function useTelegram() {
     const tg = window.Telegram?.WebApp;
