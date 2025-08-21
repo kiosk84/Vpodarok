@@ -1,10 +1,9 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { EyeIcon, Cog6ToothIcon, CheckCircleIcon, ClockIcon, XCircleIcon, PlusCircleIcon } from '@heroicons/react/24/solid';
+import { CheckCircleIcon, ClockIcon, XCircleIcon, PlusCircleIcon } from '@heroicons/react/24/solid';
 import { useTelegram } from '../hooks/useTelegram';
 import { useServices } from '../context/ServiceContext';
-import type { Service } from '../types';
 
 const statusInfo = {
     pending: { text: 'На рассмотрении', icon: ClockIcon, color: 'text-yellow-400', bgColor: 'bg-yellow-500/10' },

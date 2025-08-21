@@ -25,9 +25,9 @@ const HomePage: React.FC = () => {
                 </p>
             </header>
             
-            <section className="p-4 bg-card rounded-lg ring-1 ring-zinc-800">
+            <section className="p-4 bg-card rounded-lg ring-1 ring-zinc-800 text-center">
                 <h2 className="text-xl font-bold text-foreground">Здравствуйте, {guestName}!</h2>
-                <div className="text-hint mt-2 space-y-2 text-sm">
+                <div className="text-hint mt-2 space-y-2 text-sm max-w-xl mx-auto">
                     <p>
                         Добро пожаловать в VPodarke — платформу, где каждый подарок становится незабываемым событием.
                     </p>
@@ -57,7 +57,6 @@ const HomePage: React.FC = () => {
             </section>
             
             <section className="pt-4">
-                 {/* "Add Service" Card - Centered */}
                 <div className="flex justify-center">
                     <div
                         onClick={handleBecomeCreator}
@@ -72,11 +71,13 @@ const HomePage: React.FC = () => {
                                 <h3 className="font-bold text-lg text-white leading-tight">Добавить свою услугу</h3>
                             </div>
                         </div>
-                        <div className="p-3 flex-grow flex flex-col">
-                            <p className="text-sm text-hint mb-3 flex-grow line-clamp-2">Предлагайте свои уникальные услуги и находите новых клиентов.</p>
+                        <div className="p-3 flex-grow flex flex-col text-left">
+                            <p className="text-sm text-hint mb-3 flex-grow">
+                                Превратите ваше хобби в источник дохода. Поделитесь своим талантом с тысячами пользователей и получайте заказы на то, что вы любите делать.
+                            </p>
                             <div className="flex items-center justify-center gap-2 mt-auto">
                                 <button
-                                    className="bg-primary w-full text-primary-foreground text-xs font-semibold px-3 py-1.5 rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
+                                    className="bg-primary w-full text-primary-foreground text-sm font-semibold px-3 py-2 rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
                                     aria-label="Стать исполнителем"
                                 >
                                     Стать исполнителем

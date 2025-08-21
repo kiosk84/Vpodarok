@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { UserCircleIcon, SparklesIcon } from '@heroicons/react/24/solid';
+import { SparklesIcon } from '@heroicons/react/24/solid';
 import type { Service } from '../types';
 
 interface ServiceCardProps {

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useServices } from '../context/ServiceContext';
 import { useTelegram, ADMIN_USER_ID } from '../hooks/useTelegram';
 import type { Service } from '../types';
-import { CheckIcon, XMarkIcon, EyeIcon } from '@heroicons/react/24/solid';
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/solid';
 
 const AdminPage: React.FC = () => {
     const navigate = useNavigate();
@@ -38,12 +38,15 @@ const AdminPage: React.FC = () => {
                 </div>
             </div>
             {service.status === 'pending' && (
-                <div className="flex gap-2 mt-3 pt-3 border-t border-zinc-700">
-                    <button onClick={() => updateServiceStatus(service.id, 'approved')} className="flex-1 text-sm bg-green-500/20 text-green-400 py-2 rounded-lg hover:bg-green-500/30 transition-colors flex items-center justify-center">
-                        <CheckIcon className="w-4 h-4 mr-2"/> Одобрить
+                <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-zinc-700">
+                    <button onClick={() => updateServiceStatus(service.id, 'approved')} className="text-sm bg-green-500/20 text-green-400 py-2 rounded-lg hover:bg-green-500/30 transition-colors flex items-center justify-center">
+                        <CheckIcon className="w-4 h-4 mr-1.5"/> Одобрить
                     </button>
-                    <button onClick={() => updateServiceStatus(service.id, 'rejected')} className="flex-1 text-sm bg-red-500/20 text-red-400 py-2 rounded-lg hover:bg-red-500/30 transition-colors flex items-center justify-center">
-                        <XMarkIcon className="w-4 h-4 mr-2"/> Отклонить
+                    <button onClick={() => updateServiceStatus(service.id, 'rejected')} className="text-sm bg-red-500/20 text-red-400 py-2 rounded-lg hover:bg-red-500/30 transition-colors flex items-center justify-center">
+                        <XMarkIcon className="w-4 h-4 mr-1.5"/> Отклонить
+                    </button>
+                     <button onClick={() => navigate(`/service/${service.id}`)} className="text-sm bg-blue-500/20 text-blue-400 py-2 rounded-lg hover:bg-blue-500/30 transition-colors flex items-center justify-center">
+                        Предпросмотр
                     </button>
                 </div>
             )}
@@ -58,6 +61,9 @@ const AdminPage: React.FC = () => {
                 </h1>
             </header>
             <main className="p-4 space-y-8 pb-12">
+                 <div className="text-center text-sm text-hint p-3 bg-card rounded-lg">
+                    Используйте "Предпросмотр", чтобы увидеть услугу глазами клиента перед тем, как одобрить или отклонить ее.
+                </div>
                 <section>
                     <h2 className="text-xl font-semibold text-foreground mb-3">На модерации ({pendingServices.length})</h2>
                     {pendingServices.length > 0 ? (
