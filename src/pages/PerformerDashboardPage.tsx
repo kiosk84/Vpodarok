@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { CheckCircleIcon, ClockIcon, XCircleIcon, PlusCircleIcon } from '@heroicons/react/24/solid';
 import { useTelegram } from '../hooks/useTelegram';
 import { useServices } from '../context/ServiceContext';
@@ -12,7 +12,7 @@ const statusInfo = {
 };
 
 const PerformerDashboardPage: React.FC = () => {
-    const navigate = useNavigate();
+    const navigate = ReactRouterDOM.useNavigate();
     const { user } = useTelegram();
     const { services, isLoading } = useServices();
 

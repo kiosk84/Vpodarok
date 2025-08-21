@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { ChevronLeftIcon, UserCircleIcon, PhotoIcon, SparklesIcon } from '@heroicons/react/24/outline';
 
 const BecomePerformerPage: React.FC = () => {
-    const navigate = useNavigate();
+    const navigate = ReactRouterDOM.useNavigate();
     const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
     const [serviceImagePreview, setServiceImagePreview] = useState<string | null>(null);
 

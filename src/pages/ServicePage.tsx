@@ -1,14 +1,15 @@
 
+
 import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { useServices } from '../context/ServiceContext';
 import { useOrder } from '../context/OrderContext';
 import { useTelegram } from '../hooks/useTelegram';
 
 
 const ServicePage: React.FC = () => {
-    const { serviceId } = useParams<{ serviceId: string }>();
-    const navigate = useNavigate();
+    const { serviceId } = ReactRouterDOM.useParams<{ serviceId: string }>();
+    const navigate = ReactRouterDOM.useNavigate();
     const { tg } = useTelegram();
     const { services } = useServices();
     const { setOrderDetails } = useOrder();
@@ -59,6 +60,28 @@ const ServicePage: React.FC = () => {
                 </div>
             </section>
             
+            <section className="p-4 bg-card rounded-lg ring-1 ring-zinc-800 space-y-3 text-sm">
+                <h3 className="text-base font-semibold text-foreground -mb-1">Детали услуги</h3>
+                <div className="border-t border-zinc-700/50"></div>
+                {service.price != null && (
+                    <div className="flex justify-between items-center"><strong className="text-hint">Базовая цена:</strong> <span className="font-semibold text-primary text-base">{service.price} ₽</span></div>
+                )}
+                {service.turnaroundTime && (
+                    <div className="flex justify-between items-center"><strong className="text-hint">Срок выполнения:</strong> <span className="font-medium">{service.turnaroundTime}</span></div>
+                )}
+                {service.category && (
+                    <div className="flex justify-between items-center"><strong className="text-hint">Категория:</strong> <span className="font-medium">{service.category}</span></div>
+                )}
+                {service.tags && service.tags.length > 0 && (
+                     <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-zinc-700/50">
+                         <strong className="text-hint flex-shrink-0">Теги:</strong>
+                         {service.tags.map(tag => (
+                             <span key={tag} className="text-xs bg-background px-2 py-1 rounded-md ring-1 ring-zinc-700">{tag}</span>
+                         ))}
+                     </div>
+                )}
+            </section>
+
             <div>
                 <h2 className="text-xl font-semibold text-foreground mb-2">Описание услуги</h2>
                 <p className="text-foreground/90 whitespace-pre-wrap">{service.description}</p>

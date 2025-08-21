@@ -1,14 +1,14 @@
 
 import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { CATEGORIES } from '../constants';
 import { useOrder } from '../context/OrderContext';
 import { ChevronRightIcon, StarIcon } from '@heroicons/react/24/solid';
 
 
 const CategoryPage: React.FC = () => {
-    const { categoryId } = useParams<{ categoryId: string }>();
-    const navigate = useNavigate();
+    const { categoryId } = ReactRouterDOM.useParams<{ categoryId: string }>();
+    const navigate = ReactRouterDOM.useNavigate();
     const { setOrderDetails } = useOrder();
     const category = CATEGORIES.find(c => c.id === categoryId);
 

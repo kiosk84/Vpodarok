@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { EyeIcon, ShoppingCartIcon, BanknotesIcon, StarIcon, Cog6ToothIcon, CheckBadgeIcon, PencilIcon } from '@heroicons/react/24/solid';
 
 const PerformerDashboardPage: React.FC = () => {
-    const navigate = useNavigate();
+    const navigate = ReactRouterDOM.useNavigate();
 
     // Mock data for demonstration
     const performer = {

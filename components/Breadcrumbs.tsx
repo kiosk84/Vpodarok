@@ -1,12 +1,12 @@
 
 import React from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { ChevronRightIcon, HomeIcon } from '@heroicons/react/24/solid';
 import { CATEGORIES } from '../constants';
 
 const Breadcrumbs: React.FC = () => {
-    const location = useLocation();
-    const params = useParams<{ categoryId?: string }>();
+    const location = ReactRouterDOM.useLocation();
+    const params = ReactRouterDOM.useParams<{ categoryId?: string }>();
     const pathnames = location.pathname.split('/').filter((x) => x);
 
     const category = CATEGORIES.find(c => c.id === params.categoryId);
@@ -15,10 +15,10 @@ const Breadcrumbs: React.FC = () => {
         <nav className="flex mb-4 text-sm text-hint" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-2">
                 <li className="inline-flex items-center">
-                    <Link to="/" className="inline-flex items-center text-link hover:underline">
+                    <ReactRouterDOM.Link to="/" className="inline-flex items-center text-link hover:underline">
                         <HomeIcon className="w-4 h-4 mr-2" />
                         Главная
-                    </Link>
+                    </ReactRouterDOM.Link>
                 </li>
                 {pathnames.map((value, index) => {
                     const to = `/${pathnames.slice(0, index + 1).join('/')}`;
@@ -47,9 +47,9 @@ const Breadcrumbs: React.FC = () => {
                                 {isLast ? (
                                     <span className="ml-1 text-foreground font-medium">{breadcrumbName}</span>
                                 ) : (
-                                    <Link to={to} className="ml-1 text-link hover:underline md:ml-2">
+                                    <ReactRouterDOM.Link to={to} className="ml-1 text-link hover:underline md:ml-2">
                                         {breadcrumbName}
-                                    </Link>
+                                    </ReactRouterDOM.Link>
                                 )}
                             </div>
                         </li>

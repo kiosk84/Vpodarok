@@ -10,6 +10,11 @@ export interface Service {
   performerAvatarUrl: string; // Base64 encoded string from upload
   performerId: number; // Telegram User ID
   status: 'pending' | 'approved' | 'rejected';
+  // New fields for more detailed services
+  category?: string;
+  tags?: string[];
+  price?: number;
+  turnaroundTime?: string;
 }
 
 export interface OrderDetails {

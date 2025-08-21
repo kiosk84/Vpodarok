@@ -1,14 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { ArrowUpTrayIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { CATEGORIES } from '../constants';
 import { useOrder } from '../context/OrderContext';
 import { useTelegram } from '../hooks/useTelegram';
 
 const OrderPage: React.FC = () => {
-    const { categoryId } = useParams<{ categoryId: string }>();
-    const navigate = useNavigate();
+    const { categoryId } = ReactRouterDOM.useParams<{ categoryId: string }>();
+    const navigate = ReactRouterDOM.useNavigate();
     const { tg } = useTelegram();
     const { orderDetails, setOrderDetails, resetOrder } = useOrder();
     const [currentStep, setCurrentStep] = useState(0);

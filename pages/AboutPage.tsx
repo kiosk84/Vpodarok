@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { 
     QuestionMarkCircleIcon,
     ArrowRightIcon,
@@ -14,7 +14,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 const AboutPage: React.FC = () => {
-    const navigate = useNavigate();
+    const navigate = ReactRouterDOM.useNavigate();
     
     const howToOrderSteps = [
         { icon: MagnifyingGlassIcon, title: '1. Найдите услугу', description: 'Просматривайте каталог на главной странице, чтобы найти то, что вам по душе.' },

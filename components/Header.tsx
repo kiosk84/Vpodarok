@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 
 interface HeaderProps {
@@ -9,7 +9,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ title, showBackButton }) => {
-    const navigate = useNavigate();
+    const navigate = ReactRouterDOM.useNavigate();
 
     return (
         <header className="sticky top-0 z-10 bg-background shadow-sm p-4 flex items-center h-16 border-b border-zinc-700">

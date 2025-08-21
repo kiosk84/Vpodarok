@@ -1,12 +1,12 @@
 
 import React from 'react';
-import { useLocation, Outlet } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import Header from './Header';
 import BottomNavBar from './BottomNavBar';
 import Breadcrumbs from './Breadcrumbs';
 
 const Layout: React.FC = () => {
-    const location = useLocation();
+    const location = ReactRouterDOM.useLocation();
     
     const isHomePage = location.pathname === '/';
     
@@ -24,7 +24,7 @@ const Layout: React.FC = () => {
             <Header title={title} showBackButton={!isHomePage} />
             <main className="flex-grow overflow-y-auto p-4 pb-20">
                 {!isHomePage && <Breadcrumbs />}
-                <Outlet />
+                <ReactRouterDOM.Outlet />
             </main>
             <BottomNavBar />
         </div>

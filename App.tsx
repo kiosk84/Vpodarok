@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import CategoryPage from './pages/CategoryPage';
@@ -33,21 +33,21 @@ const App: React.FC = () => {
 
     return (
         <OrderProvider>
-            <HashRouter>
+            <ReactRouterDOM.HashRouter>
                 <div className="bg-background text-foreground min-h-screen font-sans">
-                   <Routes>
-                        <Route path="/become-performer" element={<BecomePerformerPage />} />
-                        <Route path="/" element={<Layout />}>
-                            <Route index element={<HomePage />} />
-                            <Route path="category/:categoryId" element={<CategoryPage />} />
-                            <Route path="order/:categoryId" element={<OrderPage />} />
-                            <Route path="status" element={<StatusPage />} />
-                            <Route path="about" element={<AboutPage />} />
-                            <Route path="performer-dashboard" element={<PerformerDashboardPage />} />
-                        </Route>
-                    </Routes>
+                   <ReactRouterDOM.Routes>
+                        <ReactRouterDOM.Route path="/become-performer" element={<BecomePerformerPage />} />
+                        <ReactRouterDOM.Route path="/" element={<Layout />}>
+                            <ReactRouterDOM.Route index element={<HomePage />} />
+                            <ReactRouterDOM.Route path="category/:categoryId" element={<CategoryPage />} />
+                            <ReactRouterDOM.Route path="order/:categoryId" element={<OrderPage />} />
+                            <ReactRouterDOM.Route path="status" element={<StatusPage />} />
+                            <ReactRouterDOM.Route path="about" element={<AboutPage />} />
+                            <ReactRouterDOM.Route path="performer-dashboard" element={<PerformerDashboardPage />} />
+                        </ReactRouterDOM.Route>
+                    </ReactRouterDOM.Routes>
                 </div>
-            </HashRouter>
+            </ReactRouterDOM.HashRouter>
         </OrderProvider>
     );
 };

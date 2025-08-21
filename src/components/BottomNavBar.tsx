@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import * as ReactRouterDOM from 'react-router-dom';
 import { HomeIcon, ShoppingBagIcon, UserCircleIcon, InformationCircleIcon, ShieldCheckIcon } from '@heroicons/react/24/solid';
 import { useTelegram, ADMIN_USER_ID } from '../hooks/useTelegram';
 
@@ -28,7 +28,7 @@ const BottomNavBar: React.FC = () => {
             {navItems.map((item) => {
                 const Icon = item.icon;
                 return (
-                     <NavLink 
+                     <ReactRouterDOM.NavLink 
                         key={item.to}
                         to={item.to}
                         end={item.end}
@@ -38,7 +38,7 @@ const BottomNavBar: React.FC = () => {
                     >
                         <Icon className="h-6 w-6" />
                         <span className="text-xs mt-0.5">{item.label}</span>
-                    </NavLink>
+                    </ReactRouterDOM.NavLink>
                 )
             })}
         </nav>
