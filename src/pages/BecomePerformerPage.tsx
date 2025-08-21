@@ -48,7 +48,7 @@ const BecomePerformerPage: React.FC = () => {
                 contents: `Создай 5 коротких, привлекательных и креативных названий для услуги фрилансера на маркетплейсе. Ключевые слова: "${keywords}". Названия должны быть на русском языке.`,
             });
             const text = response.text;
-            const titles = text.split('\n').map(t => t.replace(/^\d+\.\s*/, '').trim()).filter(Boolean);
+            const titles = text.split('\n').map((t: string) => t.replace(/^\d+\.\s*/, '').trim()).filter(Boolean);
             setGeneratedTitles(titles);
         } catch (error) {
             console.error("Error generating titles:", error);
