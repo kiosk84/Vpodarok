@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeftIcon, UserCircleIcon, PhotoIcon, SparklesIcon } from '@heroicons/react/24/outline';
